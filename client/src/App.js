@@ -3,8 +3,8 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 //import Register from './pages/Register';
 //import Login from './pages/Login';
 import PageRender from "./PageRender";
-import Home from './pages/Home';
-import Login from './pages/Login';
+import Home from './pages/home';
+import Login from './pages/login';
 import Alert from './components/alert/Alert';
 import {useSelector, useDispatch} from 'react-redux'
 import {refreshToken} from './redux/actions/authAction'
