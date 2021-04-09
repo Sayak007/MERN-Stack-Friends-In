@@ -53,7 +53,7 @@ const Login = () => {
                 </button>
 
                 <p className="my-2">
-                    You don't have an account? <Link to="/Register" style={{color:'Red'}}>Register Now</Link>
+                    You don't have an account? <Link to="/Register" style={{color:'blue', textDecoration:'none'}}>Register Now</Link>
                 </p>
             </form>
         </div>
