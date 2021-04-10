@@ -31,8 +31,25 @@ code {
   margin: auto;
 }
 
+img{
+  object-fit: cover;
+}
+
+.avatar{
+  width:30px;
+  height:30px;
+  border-radius: 50%;
+  border: 3px solid violet;
+}
+
+
+
+
 /*-------------AUTH------------*/
 @import url("./styles/auth.css");
 
 /*-------------Loading------------*/
 @import url("./styles/loading.css");
+
+/*-------------Header------------*/
+@import url("./styles/header.css");

@@ -1,7 +1,7 @@
-import React,{useState} from 'react'
-import {Link} from 'react-router-dom'
+import React,{useState,useEffect} from 'react'
+import {Link,useHistory} from 'react-router-dom'
 import {login} from '../redux/actions/authAction'
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import logo from '../images/icon_1.png'
 
 const Login = () => {
@@ -10,7 +10,14 @@ const Login = () => {
     const{email,password} = userData
 
     const [typepass, setTypePass] = useState(false)
+
+    const {auth} = useSelector(state=>state)
     const dispatch = useDispatch()
+    const history = useHistory()
+
+    useEffect(()=>{
+        if(auth.token) history.push("/")
+    },[auth.token,history])
 
     const handleChangeInput=e=>{
         const{name,value}=e.target
