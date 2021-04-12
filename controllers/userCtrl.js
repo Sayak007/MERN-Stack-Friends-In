@@ -12,10 +12,10 @@ const userCtrl = {
 
     getUser: async(req,res)=>{
         try{
-            const users = await Users.findById(req.params.id).limit(10).select("fullname username avatar")
-            if(!user) return res.status(500).json({msg: "User does not exist."})
+            const user = await Users.findById(req.params.id).select('-password')
+            if(!user) return res.status(400).json({msg: "User does not exist."})
 
-            res.json({users})
+            res.json({user})
         }catch(err){
             return res.status(500).json({msg: err.message})
         }
