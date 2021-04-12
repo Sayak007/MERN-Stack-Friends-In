@@ -7,9 +7,9 @@ import LoadIcon from '../../images/loading.gif'
 const Profile = () => {
     const {profile} = useSelector(state=>state)
     return (
-        <div className="profile">
+        <div className="profile">         
             {
-                profile.loading ? <img src={LoadIcon} width="20" alt="loading"/> : <Info />
+                profile.loading ? <img className="d-block mx-auto my-2" src={LoadIcon} width="30" alt="loading"/> : <Info />
             }
             <Posts />
         </div>
