@@ -8,6 +8,17 @@ const userCtrl = {
         }catch(err){
             return res.status(500).json({msg: err.message})
         }
+    },
+
+    getUser: async(req,res)=>{
+        try{
+            const users = await Users.findById(req.params.id).limit(10).select("fullname username avatar")
+            if(!user) return res.status(500).json({msg: "User does not exist."})
+
+            res.json({users})
+        }catch(err){
+            return res.status(500).json({msg: err.message})
+        }
     }
 }
 
