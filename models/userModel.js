@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
     mobile:{type: String,default: '',},
     story:{type: String,default: '',maxlength: 200}, 
     website:{type: String,default: '',},
+    address:{type: String,default: '',},
     followers:[{type: mongoose.Types.ObjectId, ref:'user'}],
     following:[{type: mongoose.Types.ObjectId, ref:'user'}],
 }, {
