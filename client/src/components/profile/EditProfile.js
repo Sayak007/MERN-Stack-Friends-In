@@ -2,13 +2,14 @@ import React,{useState,useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import {checkImage} from '../../utils/imageUpload'
 import {GLOBALTYPES} from '../../redux/actions/globalTypes'
+import {updateProfileUser} from '../../redux/actions/profileAction'
 
 const EditProfile = ({setOnEdit}) => {
     const initState = {
         fullname: '', mobile: '',address: '', website: '', story: '',gender:''
     }
     const [userData,setUserData] = useState(initState)
-    const{fullname, mobile,address, website, story} = userData
+    const{fullname, mobile,address, website, story, gender} = userData
 
     const [avatar, setAvatar] = useState('')
 
@@ -32,11 +33,16 @@ const EditProfile = ({setOnEdit}) => {
 
     }
 
+    const handleSubmit = e => {
+        e.preventDefault()
+        dispatch(updateProfileUser({userData,avatar, auth}))
+    }
+
     return (
         <div className="edit_profile">
             <button className="btn btn-danger btn_close" onClick={()=>setOnEdit(false)}>Cancel</button>
         
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="info_avatar">
                     <img src={avatar? URL.createObjectURL(avatar):auth.user.avatar} width="150" alt="avatar"
                     style={{filter:theme? 'invert(1)': 'invert(0)'}}/>
@@ -84,7 +90,7 @@ const EditProfile = ({setOnEdit}) => {
                 <br/>
                 <label htmlFor="gender">Gender</label>
                 <div className="input-group-prepend px-0 mb-4">
-                    <select name="gender" id="gender" 
+                    <select name="gender" id="gender" value={gender}
                     className="form-select text-capitalize" onChange={handleInput}>
                         <option value="male">Male</option>
                         <option value="female">Female</option>

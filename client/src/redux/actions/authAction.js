@@ -38,7 +38,6 @@ export const register = (data) => async (dispatch)=>{
         dispatch({type: GLOBALTYPES.AUTH, payload: {token: res.data.access_token, user: res.data.user} })
         localStorage.setItem("firstLogin",true)
         dispatch({type: GLOBALTYPES.ALERT, payload: {success: res.data.msg} })
-        console.log(res)
     }catch(err){
         dispatch({type: GLOBALTYPES.ALERT, payload: {error: err.response.data.msg} })
     }
