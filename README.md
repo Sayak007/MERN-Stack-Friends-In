@@ -16,5 +16,5 @@ This is a social media application built using MERN stack and Postman API. The w
 * Desktop View
 * ![image](https://github.com/Sayak007/MERN-Stack-Friends-In/blob/main/assets/ss_01.jpg)
 
-* Mobile View
+* Edit Profile
 * ![image](https://github.com/Sayak007/MERN-Stack-Friends-In/blob/main/assets/ss_02.jpg)
