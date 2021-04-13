@@ -36,18 +36,16 @@ export const updateProfileUser = ({userData,avatar, auth}) => async (dispatch) =
 
         if(avatar) media=await imageUpload([avatar])
 
-        const res = patchDataAPI("user",{...userData,avatar: avatar? media[0].url : auth.user.avatar}, auth.token)
+        const res = await patchDataAPI("user",{...userData,avatar: avatar? media[0].url : auth.user.avatar}, auth.token)
 
         dispatch({
             type: GLOBALTYPES.AUTH, payload:{
                 ...auth, user:{
-                    ...auth.user,
-                    ...userData,
+                    ...auth.user,...userData,
                     avatar: avatar ? media[0].url : auth.user.avatar,
                 }
             }
         })
-
         dispatch({type: GLOBALTYPES.ALERT,payload:{success: res.data.msg}})
 
     }catch(err){
