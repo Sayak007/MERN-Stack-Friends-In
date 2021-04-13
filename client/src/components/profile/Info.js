@@ -36,7 +36,7 @@ const Info = () => {
                                 {
                                     user._id === auth.user._id ?
                                     <button className="btn btn-outline-info" onClick={()=>setOnEdit(true)}>Edit Profile</button>
-                                    : <FollowBtn />
+                                    : <FollowBtn user={user}/>
                                 }
                                 
                             </div>
@@ -51,7 +51,7 @@ const Info = () => {
                             <p>{user.story}</p>
                         
                         </div>
-
+ 
                         {
                             onEdit && <EditProfile setOnEdit={setOnEdit}/>
                         }

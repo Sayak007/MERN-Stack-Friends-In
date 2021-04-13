@@ -67,16 +67,9 @@
     margin: 20px auto;
 }
 
-.edit_profile .btn_close{
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    height: 40px;
-}
-
-.edit_profile .btn_close span{
-    font-size: x-large;
-    padding-bottom: 30px;
+.btn_close{
+    float: right;
+    cursor: pointer;
 }
 
 .edit_profile .info_avatar{

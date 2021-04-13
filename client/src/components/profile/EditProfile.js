@@ -40,9 +40,9 @@ const EditProfile = ({setOnEdit}) => {
 
     return (
         <div className="edit_profile">
-            <button className="btn btn-danger btn_close" onClick={()=>setOnEdit(false)}>Cancel</button>
         
             <form onSubmit={handleSubmit}>
+                <i className="fa fa-times fa-2x text-danger btn_close" onClick={()=>setOnEdit(false)}></i>
                 <div className="info_avatar">
                     <img src={avatar? URL.createObjectURL(avatar):auth.user.avatar} width="150" alt="avatar"
                     style={{filter:theme? 'invert(1)': 'invert(0)'}}/>
