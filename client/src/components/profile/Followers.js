@@ -10,6 +10,13 @@ const Followers = ({users, setShowFollowers}) => {
             <div className="follow_box">
                     <h5 className="text-center">Followers</h5>
                     <hr/>
+                    { users.length==0 && 
+                        <div style={{textAlign: 'center', opacity: 0.4}}>
+                            <h4 className="text-center">No followers yet</h4>
+                            <br/>
+                            <i class="fa fa-user-plus text-info fa-5x"></i>
+                        </div>
+                    }
                     {
                         users.map(user=>(
                             <UserCard key={user._id} user={user} setShowFollowers={setShowFollowers}>

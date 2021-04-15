@@ -1,0 +1,84 @@
+.status_modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #0008;
+    z-index: 4;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+}
+
+.status_modal form{
+    max-width: 450px;
+    width: 100%;
+    background: white;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.status_modal .status_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+    transform: translateY(-13px);
+}
+
+.status_modal .status_header span{
+    font-size: 2rem;
+    font-weight: 900;
+    cursor: pointer;
+    transform: translateY(-5px);
+}
+
+.status_modal .status_body textarea{
+    width: 100%;
+    min-height: 150px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    outline: none;
+    resize: none;
+}
+
+.status_modal .status_body textarea:focus{
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+  -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
+}
+
+.status_modal .status_body .input_images{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.status_modal .status_body .input_images i{
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 10px;
+    background: linear-gradient(to bottom right, rgb(255, 152, 152), rgb(226, 173, 255));
+    border-radius: 50%;
+}
+.status_modal .status_body .input_images i:hover{
+    background: linear-gradient(to bottom right, rgb(255, 55, 55), rgb(191, 73, 255));
+    color: white;
+}
+
+.status_modal .status_body .input_images .file_upload{
+    overflow: hidden;
+    margin: 0 10px;
+    position: relative;
+}
+
+.status_modal .status_body .input_images .file_upload #file{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
