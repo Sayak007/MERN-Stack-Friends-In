@@ -56,7 +56,17 @@ export const updateProfileUser = ({userData,avatar, auth}) => async (dispatch) =
 }
 
 export const follow = ({users,user, auth}) => async(dispatch) => {
-    let newUser = {...user, followers:[...user.followers, auth.user]}
+    let newUser;// = {...user, followers:[...user.followers, auth.user]}
+
+    if(users.every(item=>item._id !== user._id)){
+        newUser = {...user, followers:[...user.followers, auth.user]}
+    }else{
+        users.every(item=> {
+            if(item._id === user._id){
+            newUser = {...item, followers:[...item.followers, auth.user]}
+        }})
+    }
+
     dispatch({type:PROFILE_TYPES.FOLLOW, payload:newUser})
     dispatch({type:GLOBALTYPES.AUTH,payload:{...auth,user:{...auth.user,following: [...auth.user.following, newUser]}}})
 
@@ -68,7 +78,17 @@ export const follow = ({users,user, auth}) => async(dispatch) => {
 }
 
 export const unfollow = ({users,user, auth}) => async(dispatch) => {
-    let newUser = {...user, followers:DeleteData(user.followers,auth.user._id)}
+    let newUser;
+
+    if(users.every(item=>item._id !== user._id)){
+        newUser = {...user, followers:DeleteData(user.followers,auth.user._id)}
+    }else{
+        users.every(item=> {
+            if(item._id === user._id){
+            newUser = {...item, followers:DeleteData(item.followers,auth.user._id)}
+        }})
+    }
+
     dispatch({type:PROFILE_TYPES.UNFOLLOW, payload:newUser})
     dispatch({type:GLOBALTYPES.AUTH,payload:{...auth,user:{...auth.user,following:DeleteData(auth.user.following,newUser._id)}}})
 
