@@ -12,7 +12,7 @@ const Status = () =>{
             <Avatar src={auth.user.avatar} size="big-avatar" />
             <button className="statusBtn flex-fill"
             onClick={()=>dispatch({type:GLOBALTYPES.STATUS, payload: true})}>
-                {auth.user.username}, what are you thinking?
+                {auth.user.fullname.replace(/ .*/,'')}, what are you thinking?
             </button>
         </div>
     );

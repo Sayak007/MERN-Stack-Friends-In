@@ -16,7 +16,7 @@ const FollowBtn = ({user}) => {
     },[auth.user.following, user._id])
     
     const handleFollow = async () =>{
-        if(load) return 
+        if(load) return; 
         setFollowed(true)
         setLoad(true)
         await dispatch(follow({users:profile.users, user, auth}))
@@ -24,7 +24,7 @@ const FollowBtn = ({user}) => {
     }
 
     const handleUnfollow = async () => {
-        if(load) return 
+        if(load) return ;
     
         setFollowed(false)
         setLoad(true)
