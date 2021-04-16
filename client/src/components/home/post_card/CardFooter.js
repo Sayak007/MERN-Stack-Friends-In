@@ -5,6 +5,7 @@ import LikeButton from '../../LikeButton'
 import {useSelector} from 'react-redux'
 
 const CardFooter = ({post}) => {
+    const {theme} = useSelector(state=>state)
     const [isLike, setIsLike] = useState(false)
     const [loadLike, setLoadLike] = useState(false)
 
@@ -31,8 +32,8 @@ const CardFooter = ({post}) => {
                 <i className="far fa-bookmark" />
             </div>
             <div className="d-flex justify-content-between">
-                <h6 style={{padding: '0 34px', cursor: 'pointer'}}>{post.likes.length} <i className="fas fa-heart text-danger" /></h6>
-                <h6 style={{padding: '0 25px', cursor: 'pointer'}}>{post.comments.length} <i className="fas fa-comment text-primary" /></h6>
+                <h6 style={{padding: '0 34px', cursor: 'pointer'}}>{post.likes.length} <i className="fas fa-heart text-danger" style={{filter: `${theme? 'invert(1)':'invert(0)'}`}}/></h6>
+                <h6 style={{padding: '0 25px', cursor: 'pointer'}}>{post.comments.length} <i className="fas fa-comment text-primary" style={{filter: `${theme? 'invert(1)':'invert(0)'}`}}/></h6>
             </div>
         </div>
     );
