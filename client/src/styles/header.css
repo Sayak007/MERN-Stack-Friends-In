@@ -6,6 +6,7 @@
     left: 0;
     z-index: 2;
     box-shadow: 0 0 10px #ddd;
+    background: #f8f9fa;
 }
 
 .header .navbar{
@@ -110,6 +111,8 @@
         width: 100%;
         box-shadow: 0 0 10px #ddd;
         z-index: 2;
+        background: #f8f9fa;
+        margin-top: 10px;
     }
 
     .header .menu .navbar-nav{

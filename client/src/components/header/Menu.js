@@ -40,13 +40,25 @@ const Menu=()=> {
                     <Avatar src={auth.user.avatar} size="medium-avatar"/>
                 </span>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><Link className="dropdown-item" to={`/profile/${auth.user._id}`}>Profile</Link></li>
+                    <li><Link className="dropdown-item" to={`/profile/${auth.user._id}`}><span className="material-icons" style={{transform: 'translateY(6px)'}}>person</span> Profile</Link></li>
                     <li><label htmlFor="theme" className="dropdown-item" onClick={()=>dispatch({type: GLOBALTYPES.THEME, payload:!theme})}>
-                            {theme? 'Light Mode': 'Dark Mode'}
+                            {
+                                theme
+                                ? <div>
+                                    <span className="material-icons" style={{transform: 'translateY(6px)'}}>
+                                        light_mode
+                                    </span> Light Mode
+                                  </div> 
+                                : <div>
+                                    <span className="material-icons" style={{transform: 'translateY(6px)'}}>
+                                        dark_mode
+                                    </span> Dark mode
+                                  </div>
+                            }
                         </label>
                     </li>
                     <li><hr className="dropdown-divider"/></li>
-                    <li><Link className="dropdown-item" to="/" onClick={()=>dispatch(logout())}>Logout</Link></li>
+                    <li><Link className="dropdown-item" to="/" onClick={()=>dispatch(logout())}><span className="material-icons" style={{transform: 'translateY(6px)'}}>logout</span> Logout</Link></li>
                 </ul>
                 </li>
                 
