@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useRef} from 'react';
 import {useSelector,useDispatch} from 'react-redux'
 import {GLOBALTYPES} from '../redux/actions/globalTypes'
 
@@ -7,6 +7,10 @@ const StatusModal = () => {
     const dispatch = useDispatch()
     const[content, setContent] = useState('')
     const[images, setImages] = useState([])
+    const[stream,setStream] = useState(false)
+    const videoRef = useRef()
+    const refCanvas = useRef()
+    const[tracks, setTracks] = useState('')
 
     const handleChangeImages = e => {
         const files = [...e.target.files]
@@ -33,6 +37,36 @@ const StatusModal = () => {
         setImages(newArr)
     }
 
+    const handleStream = () => {
+        setStream(true)
+        if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia){
+            navigator.mediaDevices.getUserMedia({video:true})
+            .then(mediaStream=>{
+                videoRef.current.srcObject = mediaStream
+                videoRef.current.play()
+                const track = mediaStream.getTracks()
+                setTracks(track[0])
+            }).catch(err=> console.log(err))
+        }
+    }
+
+    const handleCapture = () => {
+        const width = videoRef.current.clientWidth
+        const height = videoRef.current.clientHeight
+
+        refCanvas.current.setAttribute('width',width)
+        refCanvas.current.setAttribute('height',height)
+        const ctx = refCanvas.current.getContext('2d')
+        ctx.drawImage(videoRef.current, 0 ,0 , width,height)
+        let URL = refCanvas.current.toDataURL()
+        setImages([...images, {camera: URL}])
+    }
+
+    const handleStopStream = () => {
+        tracks.stop()
+        setStream(false)
+    }
+
     return (
         <div className="status_modal">
             <form>
@@ -51,21 +85,44 @@ const StatusModal = () => {
                         {
                             images.map((img,index)=>(
                                 <div key={index} id="file_img">
-                                    <img src={URL.createObjectURL(img) } alt="images" className="img-thumbnail" style={{filter: theme ? 'invert(1)' : 'invert(0)'}}/>
+                                    <img src={ img.camera ? img.camera : URL.createObjectURL(img) } alt="images" className="img-thumbnail" style={{filter: theme ? 'invert(1)' : 'invert(0)'}}/>
                                     <span onClick={()=>deleteImages(index)}><i className="fa fa-times"/></span>
                                 </div>
                             ))
                         }
                     </div>
 
-                    <div className="input_images">
-                        <i className="fas fa-camera" />
+                    {
+                        stream && 
+                        <div className="stream">
+                            <video autoPlay muted ref={videoRef} style={{filter: theme ? 'invert(1)' : 'invert(0)'}}
+                            width="100%" height="100%" />
                         
-                        <div className="file_upload">
-                            <i className="far fa-image" />
-                            <input type="file" name="file" id="file" multiple accept="image/*" 
-                            onChange={handleChangeImages}/>
+                            
+                            <canvas ref={refCanvas} style={{display: 'none' }} />
                         </div>
+                    }
+
+                    <div className="input_images">
+                        {
+                            stream
+                            ?
+                            <>   
+                                <i className="fas fa-camera" onClick={handleCapture} title="Capture" />
+                                <i className="fas fa-times" onClick={handleStopStream} title="Cancel" />
+                            </>
+                            :
+                            <>
+                                <i className="fas fa-camera" onClick={handleStream} title="Click Photos"/>
+                        
+                                <div className="file_upload">
+                                    <i className="far fa-image" title="Upload Images"/>
+                                    <input type="file" name="file" id="file" multiple accept="image/*" 
+                                    onChange={handleChangeImages}/>
+                                </div>
+                            </>
+                        }
+                        
 
                         
                     </div>
