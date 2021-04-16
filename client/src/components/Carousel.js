@@ -1,6 +1,8 @@
 import React from 'react';
+import {useSelector} from 'react-redux'
 
 const Carousel = ({images,id}) => {
+    const{theme} = useSelector(state=>state)
     const isActive=index=>{
         if(index===0) return "active";
     }
@@ -18,7 +20,7 @@ const Carousel = ({images,id}) => {
                 {
                     images.map((img,index)=>(
                         <div key={index} className={`carousel-item ${isActive(index)}`}>
-                            <img className="d-block w-100" src={img.url} alt={img.url}/>
+                            <img className="d-block w-100" src={img.url} alt={img.url} style={{filter: `${theme? 'invert(1)':'invert(0)'}`}}/>
                         </div>
                     ))
                 }

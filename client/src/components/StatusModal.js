@@ -1,10 +1,10 @@
-import React,{useState,useRef} from 'react';
+import React,{useState,useRef,useEffect } from 'react';
 import {useSelector,useDispatch} from 'react-redux'
 import {GLOBALTYPES} from '../redux/actions/globalTypes'
-import {createPost} from '../redux/actions/postAction'
+import {createPost,updatePost} from '../redux/actions/postAction'
 
 const StatusModal = () => {
-    const{auth,theme} = useSelector(state=>state)
+    const{auth,theme,status} = useSelector(state=>state)
     const dispatch = useDispatch()
     const[content, setContent] = useState('')
     const[images, setImages] = useState([])
@@ -75,7 +75,11 @@ const StatusModal = () => {
                 type: GLOBALTYPES.ALERT, payload:{error: "Please add your photo."}
             })
         
-        dispatch(createPost({content,images,auth}))
+        if(status.onEdit){
+            dispatch(updatePost({content,images,auth,status}))
+        }else{
+            dispatch(createPost({content,images,auth}))
+        }
 
         setContent('')
         setImages([])
@@ -83,6 +87,13 @@ const StatusModal = () => {
         dispatch({type: GLOBALTYPES.STATUS, payload: false})
         dispatch({type: GLOBALTYPES.ALERT, payload: {success: "Post created Successfully!"}})
     }
+
+    useEffect(()=>{
+        if(status.onEdit){
+            setContent(status.content)
+            setImages(status.images)
+        }
+    },[status])
 
     return (
         <div className="status_modal">
@@ -93,7 +104,7 @@ const StatusModal = () => {
                 </div>
 
                 <div className="status_body">
-                    <textarea name="content" id="" 
+                    <textarea name="content" id="" value={content}
                         placeholder={`${auth.user.fullname.replace(/ .*/,'')}, what are you thinking?`}
                         onChange={e=>setContent(e.target.value)}
                     />
@@ -102,7 +113,7 @@ const StatusModal = () => {
                         {
                             images.map((img,index)=>(
                                 <div key={index} id="file_img">
-                                    <img src={ img.camera ? img.camera : URL.createObjectURL(img) } alt="images" className="img-thumbnail" style={{filter: theme ? 'invert(1)' : 'invert(0)'}}/>
+                                    <img src={ img.camera ? img.camera : img.url ? img.url : URL.createObjectURL(img) } alt="images" className="img-thumbnail" style={{filter: theme ? 'invert(1)' : 'invert(0)'}}/>
                                     <span onClick={()=>deleteImages(index)}><i className="fa fa-times"/></span>
                                 </div>
                             ))

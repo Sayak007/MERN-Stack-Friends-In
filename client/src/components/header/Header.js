@@ -12,7 +12,7 @@ const Header = () => {
         <div className="header bg-light">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to='/'>
+                    <Link className="navbar-brand" to='/' onClick={()=> window.scrollTo({top: 0})}>
                         <img width="130" src={icon_0} style={{filter: `${theme? 'invert(1)':'invert(0)'}`}}/>
                     </Link>
                     
