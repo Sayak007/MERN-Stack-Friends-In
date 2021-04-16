@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import {useSelector,useDispatch} from 'react-redux'
 import {useHistory,Link} from 'react-router-dom'
-import logo from '../images/icon_1.png'
+import logo from '../images/icon_0.png'
 import {register} from '../redux/actions/authAction'
 
 const Register= () =>{
@@ -38,8 +38,8 @@ const Register= () =>{
         <div className="auth_page" >
             <form onSubmit={handleSubmit} style={{maxWidth: '600px'}}>
                 <div className="row justify-content-center text-center">
-                    <img src={logo} alt="Ok" style={{maxWidth:'120px'}}/>
-                    <h3 className="text-uppercase">Friends-In</h3>
+                    <img src={logo} alt="Ok" style={{maxWidth:'500px'}}/>
+                    <h3 className="text-uppercase">Register</h3>
                 </div>
 
                 <div className="form-group">

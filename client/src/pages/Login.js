@@ -3,6 +3,7 @@ import {Link,useHistory} from 'react-router-dom'
 import {login} from '../redux/actions/authAction'
 import {useDispatch,useSelector} from 'react-redux'
 import logo from '../images/icon_1.png'
+import logo1 from '../images/icon_0.png'
 
 const Login = () => {
     const initialState = {email:'',password:''}
@@ -31,12 +32,11 @@ const Login = () => {
     
     return (
         <div className="auth_page">
-            <form onSubmit={handleSubmit}>
-                <div className="row justify-content-center text-center">
-                    <img src={logo} alt="Ok" style={{maxWidth:'120px'}}/>
-                    <h3 className="text-uppercase">Friends-In</h3>
-                </div>
-                
+            <div className="row justify-content-center text-center x">
+                <img src={logo1} alt="Ok" width="400px"/>
+            </div>
+            <form onSubmit={handleSubmit} style={{paddingTop: '5px', paddingBottom: '5px'}}>
+                <div className="row justify-content-center text-center"><h4>Login</h4></div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
                     <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={handleChangeInput} value={email} name="email"/>
