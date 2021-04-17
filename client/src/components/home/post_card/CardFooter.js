@@ -1,20 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom'
 import Send from '../../../images/send.svg'
 import LikeButton from '../../LikeButton'
-import {useSelector} from 'react-redux'
+import {useSelector,useDispatch} from 'react-redux'
+import {likePost,unLikePost} from '../../../redux/actions/postAction'
+
 
 const CardFooter = ({post}) => {
-    const {theme} = useSelector(state=>state)
+    const {auth,theme} = useSelector(state=>state)
+    const dispatch = useDispatch()
     const [isLike, setIsLike] = useState(false)
     const [loadLike, setLoadLike] = useState(false)
 
-    const handleLike = () => {
+    useEffect(()=>{
+        if(post.likes.find(like=>like._id===auth.user._id)){
+            setIsLike(true)
+        }
+    },[post.likes, auth.user._id])
+
+    const handleLike = async () => {
+        if(loadLike) return;
         setIsLike(true)
+        setLoadLike(true)
+        await dispatch(likePost({post,auth}))
+        setLoadLike(false)
     }
 
-    const handleUnLike =()=> {
+    const handleUnLike =async ()=> {
+        if(loadLike) return;
         setIsLike(false)
+        setLoadLike(true)
+        await dispatch(unLikePost({post,auth}))
+        setLoadLike(false)
     }
 
     return (
