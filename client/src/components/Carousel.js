@@ -20,7 +20,15 @@ const Carousel = ({images,id}) => {
                 {
                     images.map((img,index)=>(
                         <div key={index} className={`carousel-item ${isActive(index)}`}>
-                            <img className="d-block w-100" src={img.url} alt={img.url} style={{filter: `${theme? 'invert(1)':'invert(0)'}`}}/>
+                            <img className="d-block w-100" src={img.url} alt={img.url} 
+                            style={{filter: `${theme? 'invert(1)':'invert(0)'}`,
+                            display: 'block',
+                            objectFit: 'contain',
+                            width: '100%',
+                            height: '100%',
+                            maxHeight: '600px',
+                            background: '#ddd'}}
+                            />
                         </div>
                     ))
                 }
