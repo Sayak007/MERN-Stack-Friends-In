@@ -35,7 +35,7 @@ const CardHeader = ({post}) => {
                 </span>
                 <div className="dropdown-menu">
                     {
-                            auth.user._id == post.user._id &&
+                            auth.user._id === post.user._id &&
                             <>
                                 <div className="dropdown-item" onClick={handleEditPost}>
                                     <span className="material-icons">create</span> Edit Post

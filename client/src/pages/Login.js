@@ -2,7 +2,6 @@ import React,{useState,useEffect} from 'react'
 import {Link,useHistory} from 'react-router-dom'
 import {login} from '../redux/actions/authAction'
 import {useDispatch,useSelector} from 'react-redux'
-import logo from '../images/icon_1.png'
 import logo1 from '../images/icon_0.png'
 
 const Login = () => {

@@ -1,0 +1,26 @@
+.comment_input{
+    display: flex;
+    align-items: center;
+}
+
+.comment_input input{
+    background: #f7f7f7;
+    border: none;
+    outline: none;
+    flex: 1;
+    overflow: auto;
+}
+
+.comment_input .postBtn{
+    border: none;
+    outline: none;
+    background: #f7f7f7;
+    cursor: pointer;
+}
+
+.postBtn:hover{
+    border-radius: 50%;
+    padding: 0px 3px;
+    color: black;
+    background: linear-gradient(to bottom right, rgb(255, 55, 55), rgb(191, 73, 255));
+}

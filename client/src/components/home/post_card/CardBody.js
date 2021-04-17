@@ -25,7 +25,7 @@ const CardBody = ({post}) => {
             </div>
             {
                 post.images.length>0 && 
-                post.images.length==1 
+                post.images.length===1 
                 ?   <img className="d-block w-100" src={post.images[0].url} alt={ post.images[0].url}
                         style={{filter: `${theme? 'invert(1)':'invert(0)'}`,
                         display: 'block',

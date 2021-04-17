@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react';
-import {useParams,Link} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import Avatar from '../Avatar'
 import {getProfileUsers} from '../../redux/actions/profileAction'
@@ -36,7 +36,7 @@ const Info = () => {
         }else{
             dispatch({type: GLOBALTYPES.MODAL, payload: false})
         }
-    },[showFollowers,showFollowing, onEdit])
+    },[showFollowers,showFollowing, onEdit, dispatch])
 
     return (
         <div className="info">

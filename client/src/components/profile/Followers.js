@@ -1,7 +1,7 @@
 import React from 'react';
 import UserCard from '../UserCard'
 import FollowBtn from '../FollowBtn'
-import {useSelector,useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 
 const Followers = ({users, setShowFollowers}) => {
     const {auth} = useSelector(state=>state)
@@ -10,7 +10,7 @@ const Followers = ({users, setShowFollowers}) => {
             <div className="follow_box">
                     <h5 className="text-center">Followers</h5>
                     <hr/>
-                    { users.length==0 && 
+                    { users.length===0 && 
                         <div style={{textAlign: 'center', opacity: 0.4}}>
                             <h4 className="text-center">No followers yet</h4>
                             <br/>
