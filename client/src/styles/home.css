@@ -48,11 +48,6 @@
     display: flex;
     margin: 5px 0;
 }
-#moreLink:hover{
-    background: #ddd;
-    padding: 5px;
-    border-radius: 50%;
-}
 
 /*----------Post Card Body ------------------*/
 .posts .card_body_content{
