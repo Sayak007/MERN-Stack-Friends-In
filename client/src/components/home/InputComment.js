@@ -1,7 +1,8 @@
 import React,{useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux'
+import {createComment} from '../../redux/actions/commentAction'
 
-const InputComment = ({children}) => {
+const InputComment = ({children,post}) => {
     const [content, setContent] = useState('')
 
     const{auth} = useSelector(state=>state)
@@ -17,6 +18,8 @@ const InputComment = ({children}) => {
             createdAt: new Date().toISOString()
         }
 
+        setContent('')
+
         dispatch(createComment(post, newComment, auth))
     }
 
@@ -27,7 +30,7 @@ const InputComment = ({children}) => {
             value={content} onChange={e=>setContent(e.target.value) }/>
 
             <button type="submit" className="postBtn">
-                <span className="material-icons" style={{transform: 'translate(2px,3px)'}}>send</span>
+                <span className="material-icons text-warning" style={{transform: 'translate(2px,3px)'}}>send</span>
             </button>
         </form>
     );
