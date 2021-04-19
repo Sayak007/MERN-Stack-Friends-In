@@ -4,6 +4,8 @@ import Send from '../../../images/send.svg'
 import LikeButton from '../../LikeButton'
 import {useSelector,useDispatch} from 'react-redux'
 import {likePost,unLikePost} from '../../../redux/actions/postAction'
+import Avatar from '../../Avatar'
+import Likes from '../Likes'
 
 
 const CardFooter = ({post}) => {
@@ -11,6 +13,7 @@ const CardFooter = ({post}) => {
     const dispatch = useDispatch()
     const [isLike, setIsLike] = useState(false)
     const [loadLike, setLoadLike] = useState(false)
+    const [likeBox, setLikeBox] = useState(false)
 
     useEffect(()=>{
         if(post.likes.find(like=>like._id===auth.user._id)){
@@ -49,9 +52,27 @@ const CardFooter = ({post}) => {
                 <i className="far fa-bookmark" />
             </div>
             <div className="d-flex justify-content-between">
-                <h6 style={{padding: '0 34px', cursor: 'pointer'}}>{post.likes.length} <i className="fas fa-heart text-danger" style={{filter: `${theme? 'invert(1)':'invert(0)'}`}}/></h6>
+                <h6 style={{padding: '0 34px', cursor: 'pointer'}} onClick={() => {setLikeBox(true)}}>{post.likes.length} <i className="fas fa-heart text-danger" style={{filter: `${theme? 'invert(1)':'invert(0)'}`}}/></h6>
                 <h6 style={{padding: '0 25px', cursor: 'pointer'}}>{post.comments.length} <i className="fas fa-comment text-primary" style={{filter: `${theme? 'invert(1)':'invert(0)'}`}}/></h6>
             </div>
+            <div style={{overflowX: 'scroll',textAlign: 'left', paddingLeft: '32px',paddingRight: '25px'}}>
+                {post.likes.slice(0, 7).map((item,index)=>(
+                    <Link to={`/profile/${item._id}`} key={index} className="text-dark" style={{textDecoration:'none', marginRight: '2px'}}>
+                        <Avatar src={item.avatar} size="medium-avatar"/>
+                    </Link>
+                ))}
+                {
+                    post.likes.length !==0 &&
+                    <i className="fa fa-plus-circle text-success" style={{filter: `${theme? 'invert(1)':'invert(0)'}`,fontSize: '20px', cursor: 'pointer', textDecoration:'none', verticalAlign:'middle'}}
+                    onClick={() => {setLikeBox(true)}}/>
+                
+                }
+                
+                
+            </div>
+            {   
+                likeBox && <Likes users = {post.likes} setLikeBox={setLikeBox}/>    
+            }
         </div>
     );
 }

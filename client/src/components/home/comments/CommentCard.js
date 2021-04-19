@@ -45,7 +45,7 @@ const CommentCard = ({comment, post}) => {
         setLoadLike(false)
     }
     const handleUnLike = async() =>{
-        if(loadLike) return 
+        if(loadLike) return  
         setIsLike(false)
         setLoadLike(true)
         await dispatch(unLikeComment({comment,post,auth}))
