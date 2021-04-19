@@ -17,13 +17,6 @@
     background: #f7f7f7;
     cursor: pointer;
 }
-
-.postBtn:hover{
-    border-radius: 50%;
-    padding: 0px 3px;
-    background: #ddd;
-}
-
 /*-------------Comments------------*/
 .comment_display{
     padding: 10px 25px;
@@ -42,4 +35,33 @@
 .comment_card .comment_content .readMore{
     cursor: pointer;
     color: rgb(35, 93, 255);
+}
+
+.comment_card .comment_content .nav-item{
+    cursor: pointer;
+    opacity: 0;
+}
+
+.comment_card .comment_content:hover .nav-item{
+    opacity: 1;
+}
+
+.comment_card .comment_content .dropdown-menu{
+    position: absolute;
+    right: 0;
+    left: inherit;
+}
+
+.comment_card .comment_content .dropdown-item{
+    display: flex;
+    margin: 10px 0;
+}
+
+.comment_card .comment_content textarea{
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    padding: 3px;
 }

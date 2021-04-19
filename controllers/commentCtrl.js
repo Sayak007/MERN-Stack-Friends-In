@@ -17,7 +17,17 @@ const commentCtrl = {
             await newComment.save()
             res.json({newComment})
         }catch(err){
+            return res.status(500).json({msg: err.message})
+        }
+    },
+    updateComment: async(req,res) => {
+        try{
+            const {content} = req.body
+            await Comments.findOneAndUpdate({_id: req.params.id, user: req.user._id}, {content})
 
+            res.json({msg: 'Update Success!'})
+        }catch(err){
+            return res.status(500).json({msg: err.message})
         }
     }
 }

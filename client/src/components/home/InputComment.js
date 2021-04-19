@@ -5,7 +5,7 @@ import {createComment} from '../../redux/actions/commentAction'
 const InputComment = ({children,post}) => {
     const [content, setContent] = useState('')
 
-    const{auth} = useSelector(state=>state)
+    const{auth,theme} = useSelector(state=>state)
     const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
@@ -20,7 +20,7 @@ const InputComment = ({children,post}) => {
 
         setContent('')
 
-        dispatch(createComment(post, newComment, auth))
+        dispatch(createComment({post, newComment, auth}))
     }
 
     return (
@@ -30,7 +30,7 @@ const InputComment = ({children,post}) => {
             value={content} onChange={e=>setContent(e.target.value) }/>
 
             <button type="submit" className="postBtn">
-                <span className="material-icons text-warning" style={{transform: 'translate(2px,3px)'}}>send</span>
+                <span className="material-icons text-primary" style={{transform: 'translate(2px,3px)'}} style={{filter: `${theme? 'invert(1)':'invert(0)'}`}}>send</span>
             </button>
         </form>
     );

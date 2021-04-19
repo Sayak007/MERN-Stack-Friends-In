@@ -1,17 +1,6 @@
 import React from 'react'
 
-const CommentMenu = ({post, comment, auth}) => {
-    
-    const MenuItem = () => {
-        <>
-            <div className="dropdown-item">
-                <span className="material-icons">create</span> Edit
-            </div>
-            <div className="dropdown-item">
-                <span className="material-icons">delete_outline</span> Remove
-            </div>
-        </>
-    }
+const CommentMenu = ({post, comment, auth, setOnEdit}) => {
 
     return (
         <div className="menu">
@@ -25,11 +14,27 @@ const CommentMenu = ({post, comment, auth}) => {
                         {
                             post.user._id === auth.user._id
                             ?   comment.user._id === auth.user._id 
-                                ?   MenuItem()
+                                ?   //Menu item
+                                    <>
+                                        <div className="dropdown-item" onClick={()=>setOnEdit(true)}>
+                                            <span className="material-icons">create</span> Edit
+                                        </div>
+                                        <div className="dropdown-item">
+                                            <span className="material-icons">delete_outline</span> Remove
+                                        </div>
+                                    </>
                                 :   <div className="dropdown-item">
                                         <span className="material-icons">delete_outline</span> Remove
                                     </div>
-                            :   comment.user._id === auth.user._id && MenuItem()
+                            :   comment.user._id === auth.user._id && //Menu item
+                                <>
+                                    <div className="dropdown-item" onClick={()=>setOnEdit(true)}>
+                                        <span className="material-icons">create</span> Edit
+                                    </div>
+                                    <div className="dropdown-item">
+                                        <span className="material-icons">delete_outline</span> Remove
+                                    </div>
+                                </>
                         }
                     </div>
                 </div>
