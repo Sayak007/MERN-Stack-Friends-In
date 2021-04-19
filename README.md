@@ -13,6 +13,15 @@ This is a social media application built using MERN stack and Postman API. The w
 * JSON-Web-Token
 
 ## Screenshots
+* Comment Box
+* ![image](https://github.com/Sayak007/MERN-Stack-Friends-In/blob/main/assets/ss_01.jpg)
+
+* Like List
+* ![image](https://github.com/Sayak007/MERN-Stack-Friends-In/blob/main/assets/ss_07.jpg)
+
+* Likes Bubbles 
+* ![image](https://github.com/Sayak007/MERN-Stack-Friends-In/blob/main/assets/ss_02.jpg)
+
 * Newsfeed 
 * ![image](https://github.com/Sayak007/MERN-Stack-Friends-In/blob/main/assets/ss_05.jpg)
 
