@@ -79,3 +79,11 @@
     height: 30px;
     transform: translate(5px,-6px);
 }
+
+#likebubble{
+    transform: translate(-8px,9px);
+    font-size: 13px;
+    margin-right: -10px;
+    color: rgb(196, 43, 43);
+    opacity: 0.8;
+}

@@ -58,12 +58,13 @@ const CardFooter = ({post}) => {
             <div style={{overflowX: 'scroll',textAlign: 'left', paddingLeft: '32px',paddingRight: '25px'}}>
                 {post.likes.slice(0, 7).map((item,index)=>(
                     <Link to={`/profile/${item._id}`} key={index} className="text-dark" style={{textDecoration:'none', marginRight: '2px'}}>
-                        <Avatar src={item.avatar} size="medium-avatar"/>
+                        <Avatar src={item.avatar} size="medium-avatar" style={{opacity: 0.2}}/>
+                        <i className="fas fa-heart" id="likebubble" style={{filter: `${theme? 'invert(1)':'invert(0)'}`}} />
                     </Link>
                 ))}
                 {
                     post.likes.length !==0 &&
-                    <i className="fa fa-plus-circle text-success" style={{filter: `${theme? 'invert(1)':'invert(0)'}`,fontSize: '20px', cursor: 'pointer', textDecoration:'none', verticalAlign:'middle'}}
+                    <i className="fas fa-angle-double-right text-secondary" style={{filter: `${theme? 'invert(1)':'invert(0)'}`,fontSize: '20px',paddingLeft:'10px', cursor: 'pointer', textDecoration:'none', verticalAlign:'middle'}}
                     onClick={() => {setLikeBox(true)}}/>
                 
                 }
