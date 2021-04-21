@@ -1,8 +1,9 @@
+import { set } from 'mongoose';
 import React,{useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import {createComment} from '../../redux/actions/commentAction'
 
-const InputComment = ({children,post}) => {
+const InputComment = ({children,post, onReply, setOnReply}) => {
     const [content, setContent] = useState('')
 
     const{auth,theme} = useSelector(state=>state)
@@ -10,17 +11,25 @@ const InputComment = ({children,post}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(!content.trim()) return;
+        if(!content.trim()) {
+            if(setOnReply) return setOnReply(false)
+            return;
+
+        }
 
         const newComment = {
             content, likes: [],
             user: auth.user,
-            createdAt: new Date().toISOString()
+            createdAt: new Date().toISOString(),
+            reply: onReply && onReply.commentID,
+            tag: onReply && onReply.user
         }
 
         setContent('')
+        //console.log(newComment)
 
         dispatch(createComment({post, newComment, auth}))
+        if(setOnReply) return setOnReply(false)
     }
 
     return (

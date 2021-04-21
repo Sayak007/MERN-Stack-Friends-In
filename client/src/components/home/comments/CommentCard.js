@@ -6,8 +6,9 @@ import {useSelector,useDispatch} from 'react-redux'
 import LikeButton from '../../LikeButton'
 import CommentMenu from './CommentMenu'
 import { updateComment, likeComment, unLikeComment } from '../../../redux/actions/commentAction'
+import InputComment from '../InputComment'
 
-const CommentCard = ({comment, post}) => {
+const CommentCard = ({children, comment, post, commentId}) => {
     const {auth,theme} = useSelector(state=>state)
     const dispatch = useDispatch()
     const [content, setContent] = useState('')
@@ -15,6 +16,7 @@ const CommentCard = ({comment, post}) => {
     const [isLike, setIsLike] = useState(false)
     const [onEdit, setOnEdit] = useState(false)
     const [loadLike, setLoadLike] = useState(false)
+    const [onReply, setOnReply] = useState(false)
 
     useEffect(()=>{
         setContent(comment.content)
@@ -50,6 +52,11 @@ const CommentCard = ({comment, post}) => {
         setLoadLike(true)
         await dispatch(unLikeComment({comment,post,auth}))
         setLoadLike(false)
+    }
+
+    const handleReply = async () => {
+        if(onReply) return setOnReply(false)
+        setOnReply({...comment, commentId})
     }
     return (
         <div className="comment_card mt-2" style={styleCard}>
@@ -97,8 +104,13 @@ const CommentCard = ({comment, post}) => {
                                         <i className="fa fa-ban text-danger" style={{filter: `${theme? 'invert(1)':'invert(0)'}`}} /> cancel
                                     </small>
                                 </>
-                            :   <small className="mr-3" style={{fontWeight: 'bold', marginRight: '20px'}}> 
-                                    <i className="fa fa-reply text-primary" style={{filter: `${theme? 'invert(1)':'invert(0)'}`}} /> reply
+                            :   <small className="mr-3" style={{fontWeight: 'bold', marginRight: '20px'}} onClick={handleReply}> 
+                                    {
+                                        onReply
+                                        ?   <><i className="fa fa-times text-danger" style={{filter: `${theme? 'invert(1)':'invert(0)'}`}}/> cancel </>
+                                        :   <><i className="fa fa-reply text-primary" style={{filter: `${theme? 'invert(1)':'invert(0)'}`}} /> reply </>
+                                    }
+                                    
                                 </small>
                         }
                         
@@ -111,6 +123,17 @@ const CommentCard = ({comment, post}) => {
                     
                 </div>
             </div>
+        
+            {
+                onReply 
+                &&  
+                    <InputComment post={post} onReply={onReply} setOnReply={setOnReply}>
+                        <Link to={`/profile/${onReply.user._id}`} style={{textDecoration: 'none'}}>
+                            @{onReply.user.username}: 
+                        </Link>
+                    </InputComment>
+            }
+            {children}
         </div>
     )
 }
