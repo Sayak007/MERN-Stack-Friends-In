@@ -12,6 +12,7 @@ const postCtrl = {
             const newPost = new Posts({
                 content, images, user: req.user._id
             })
+            //console.log(newPost)
             await newPost.save()
             res.json({
                 msg: 'Create Post!',

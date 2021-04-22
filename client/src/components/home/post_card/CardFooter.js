@@ -47,7 +47,7 @@ const CardFooter = ({post}) => {
                         <i className="far fa-comment" />
                     </Link>
 
-                    <img src={Send} alt="Send"/>
+                    <i className="far fa-paper-plane" />
                 </div>
                 <i className="far fa-bookmark" />
             </div>

@@ -20,6 +20,8 @@ const CommentCard = ({children, comment, post, commentId}) => {
 
     useEffect(()=>{
         setContent(comment.content)
+        setIsLike(false)
+        setOnReply(false)
         if(comment.likes.find(like=>like._id === auth.user._id)){
             setIsLike(true)
         }
@@ -71,6 +73,12 @@ const CommentCard = ({children, comment, post, commentId}) => {
                         onEdit 
                         ?   <textarea rows="5" value={content} onChange={e=>setContent(e.target.value)} />
                         :   <div>
+                                {
+                                    comment.tag && comment.tag._id !== comment.user._id && 
+                                    <Link to={`/profile/${comment.tag._id}`} style={{textDecoration: 'none', marginRight: '2px'}}>
+                                        @{comment.tag.username}
+                                    </Link>
+                                }
                                 <span>
                                     {
                                         content.length < 100 ? content : 
@@ -118,7 +126,7 @@ const CommentCard = ({children, comment, post, commentId}) => {
                 </div>
             
                 <div className="d-flex align-items-center" style={{cursor: 'pointer', marginRight: '10px'}}>
-                    <CommentMenu post={post} comment={comment} auth={auth} setOnEdit={setOnEdit} />
+                    <CommentMenu post={post} comment={comment} setOnEdit={setOnEdit} />
                     <LikeButton isLike={isLike} handleLike={handleLike} handleUnLike={handleUnLike}/>
                     
                 </div>

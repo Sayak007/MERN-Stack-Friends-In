@@ -23,8 +23,9 @@
     opacity: 1;
 }
 
-.header .menu .material-icons{
-    font-size: 30px;
+.header .menu .fa{
+    font-size: 24px;
+    transform: translateY(3px);
 }
 
 .header .menu .dropdown-menu{
@@ -49,7 +50,7 @@
     width: 100%;
     outline: none;
     text-indent: 5px;
-    border-radius: 3px;
+    border-radius: 13px;
 }
 
 .header .search_form #search:focus{

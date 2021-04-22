@@ -22,8 +22,8 @@ const Comments = ({post})=> {
     },[post.comments])
     return (
         <div className="comments">
-            {   showComments.map(comment=>(
-                    <CommentDisplay key={comment._id} comment={comment} post={post}/>
+            {   showComments.map((comment,index)=>(
+                    <CommentDisplay key={index} comment={comment} post={post} replyCm={replyComments.filter(item=>item.reply === comment._id)}/>
                 ))
             }
             {

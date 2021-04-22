@@ -8,10 +8,11 @@ import Avatar from '../Avatar'
 
 const Menu=()=> {
     const navLinks = [
-        {label: 'Home', icon: 'home', path: '/'},
-        {label: 'Message', icon: 'near_me', path: '/message'},
-        {label: 'Discover', icon: 'explore', path: '/discover'},
-        {label: 'Notify', icon: 'favorite', path: '/notify'}
+        {label: 'Home', icon: 'fa-house-user', path: '/', click: 'false'},
+        {label: 'Message', icon: 'fa-paper-plane', path: '/message', click: 'false'},
+        {label: 'Post', icon: 'fa-plus-square', path: '/',click: 'true'},
+        {label: 'Discover', icon: 'fa-compass', path: '/discover',click: 'false'},
+        {label: 'Notify', icon: 'fa-bell', path: '/notify',click: 'false'}
     ]
 
     const {auth,theme} = useSelector(state=>state)
@@ -28,8 +29,8 @@ const Menu=()=> {
                 {
                     navLinks.map((link,index)=>(
                         <li className="nav-item" key={index}>
-                            <Link className={`nav-link px-2 ${isActive(link.path)}`} to={link.path}>
-                                <span className="material-icons">{link.icon}</span>
+                            <Link className={`nav-link px-2 ${isActive(link.path)}`} to={link.path} onClick={()=>{ if(link.click==='true') dispatch({type:GLOBALTYPES.STATUS, payload: true})}}>
+                                <span className={`fa ${link.icon}`} title={link.label}></span>
                             </Link>
                         </li>
                     ))

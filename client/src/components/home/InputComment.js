@@ -21,7 +21,7 @@ const InputComment = ({children,post, onReply, setOnReply}) => {
             content, likes: [],
             user: auth.user,
             createdAt: new Date().toISOString(),
-            reply: onReply && onReply.commentID,
+            reply: onReply && onReply.commentId,
             tag: onReply && onReply.user
         }
 

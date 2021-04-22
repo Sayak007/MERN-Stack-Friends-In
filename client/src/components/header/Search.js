@@ -54,7 +54,7 @@ const Search = ()=> {
 
             {load && <img className="loading" src={LoadIcon} alt="loading" />}
 
-            <div className="users">
+            <div className="users" style={{borderRadius: '10px',border: '0.5px solid #ddd', boxShadow: '0 20px 50px #ccc'}}>
                 {
                     search && users.map(user=>(
                         <UserCard key={user._id} user={user} border="border" handleClose={handleClose}/>
