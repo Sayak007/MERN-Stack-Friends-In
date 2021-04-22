@@ -7,7 +7,8 @@ const CommentMenu = ({post, comment, setOnEdit}) => {
     const {auth} = useSelector(state=>state)
     const dispatch= useDispatch();
     const handleRemove = () => {
-        dispatch(deleteComment({post,auth,comment}))
+        if(post.user._id === auth.user._id || comment.user._ud === auth.user._id)
+            dispatch(deleteComment({post,auth,comment}))
     }
 
     return (
