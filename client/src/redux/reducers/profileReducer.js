@@ -3,6 +3,7 @@ import {EditData} from '../actions/globalTypes'
 
 const initialState = {
     loading: false,
+    ids: [],
     users: [],
     posts: []
 }
@@ -29,6 +30,16 @@ const profileReducer = (state=initialState,action)=>{
             return {
                 ...state,
                 users: state.users.map(user=>(user._id === action.payload._id ? action.payload : user))
+            };
+        case PROFILE_TYPES.GET_ID:
+            return {
+                ...state,
+                ids: [...state.ids, action.payload]
+            };
+        case PROFILE_TYPES.GET_POSTS:
+            return {
+                ...state,
+                posts: [...state.posts, action.payload]
             };
         default:
             return state;

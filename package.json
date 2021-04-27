@@ -4,7 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "build": "cd client && npm run build",
+    "install-client": "cd client & npm install",
+    "heroku-postbuild": "npm run install-client --only=dev && NODE_ENV=development npm install --no-shrinkwrap && npm run build"
   },
   "keywords": [],
   "author": "",

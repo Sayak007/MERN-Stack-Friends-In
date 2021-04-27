@@ -63,6 +63,9 @@
 /*-------------Comments------------*/
 @import url("./comments.css");
 
+/*-------------Post Thumb------------*/
+@import url("./post_thumb.css");
+
 .mode{
   width: 100%;
   height: 100vh;

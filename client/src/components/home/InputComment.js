@@ -1,4 +1,3 @@
-import { set } from 'mongoose';
 import React,{useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 import {createComment} from '../../redux/actions/commentAction'
@@ -39,7 +38,7 @@ const InputComment = ({children,post, onReply, setOnReply}) => {
             value={content} onChange={e=>setContent(e.target.value) }/>
 
             <button type="submit" className="postBtn">
-                <span className="material-icons text-primary" style={{transform: 'translate(2px,3px)'}} style={{filter: `${theme? 'invert(1)':'invert(0)'}`}}>send</span>
+                <span className="material-icons text-primary" style={{transform: 'translate(2px,3px)', filter: `${theme? 'invert(1)':'invert(0)'}`}}>send</span>
             </button>
         </form>
     );
